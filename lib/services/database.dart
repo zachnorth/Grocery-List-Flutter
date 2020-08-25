@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 /*
   Class that holds all database interaction services
 */
-
 class DatabaseService {
 
 

@@ -9,6 +9,10 @@ import 'package:provider/provider.dart';
 import 'package:grocerylist/models/user.dart';
 
 
+/*
+  This widget will retrieve all lists for the current user and display them in a modal on the home page
+*/
+
 class UserList extends StatelessWidget {
 
   final AuthService _auth = AuthService();
@@ -16,10 +20,13 @@ class UserList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    //value that contains the current user
     final user = Provider.of<User>(context);
 
+    //Reference to Firestore database
     final CollectionReference _lists = Firestore.instance.collection('lists').document(user.uid).collection('lists');
 
+    //stream builder that retrieves all lists from database in realtime
     return StreamBuilder<QuerySnapshot>(
       stream: _lists.snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -31,7 +38,9 @@ class UserList extends StatelessWidget {
           default:
             return new ListView(
 
+              //each snapshot contains all lists in the database
               children: snapshot.data.documents.map((DocumentSnapshot document) {
+                //document created for each list in the snapshot
                 return Container(
                   decoration: BoxDecoration(
                     color: Colors.amber[600],
@@ -42,7 +51,9 @@ class UserList extends StatelessWidget {
                     ),
 
                   ),
+                  //creates a list tile for each list in the snapshot out of each document
                   child: new ListTile(
+
                     enabled: true,
                     title: new Text(document['name'], style: TextStyle(fontSize: 20.0, color: Colors.white)),
                     onTap: () {
@@ -57,12 +68,14 @@ class UserList extends StatelessWidget {
     );
   }
 
+  //helper function that directs user that directs user to a page where they can view the list they selected
   void _helper(BuildContext context, String name) {
     Navigator.of(context).push(
         MaterialPageRoute<void>(
             builder: (BuildContext context) {
               return StreamProvider<User>.value(
                 value: AuthService().user,
+                //widget that displays the selected list
                 child: CurrentList(name: name),
               );
             }

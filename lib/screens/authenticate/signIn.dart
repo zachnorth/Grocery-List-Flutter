@@ -3,7 +3,11 @@ import 'package:grocerylist/services/auth.dart';
 import 'package:grocerylist/shared/constants.dart';
 import 'package:grocerylist/shared/loading.dart';
 
-
+/*
+  Sign in page.
+  Simple form to take in username (email) and password then uses auth script
+  to log user in.
+*/
 
 class SignIn extends StatefulWidget {
 

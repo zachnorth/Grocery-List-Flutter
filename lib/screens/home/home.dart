@@ -5,6 +5,8 @@ import 'package:grocerylist/services/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:grocerylist/models/user.dart' ;
 
+
+//Home page for users after they log in
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -17,6 +19,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
 
+    //value that contains the current user
     final user = Provider.of<User>(context);
 
     return Scaffold(
@@ -48,6 +51,7 @@ class _HomeState extends State<Home> {
                 children: <Widget>[
                   SizedBox(height: 150.0),
                   MaterialButton(
+                    //This button is used to create a new list
                     height: 50.0,
                     minWidth: 170,
                     color: Colors.amber[600],
@@ -58,6 +62,7 @@ class _HomeState extends State<Home> {
                         return Container(
                           color: Colors.teal[800],
                           padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
+                          //Widget that creates new list in the database
                           child: NewListForm(),
                         );
                       });
@@ -69,18 +74,23 @@ class _HomeState extends State<Home> {
                   ),
                   SizedBox(height: 100.0),
                   MaterialButton(
+                    /*
+                      This displays all of the current users lists in a modal
+                    */
                     height: 50.0,
                     minWidth: 170,
                     color: Colors.amber[600],
                     elevation: 1.0,
                     child: Text('My Lists', style: TextStyle(fontSize: 28.0, color: Colors.white)),
                     onPressed: () {
+                      //Modal from the bottom of the screen containing all lists
                       showModalBottomSheet(context: context, builder: (context) {
                         return Container(
                           padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                           decoration: BoxDecoration(
                             color: Colors.teal[800]
                           ),
+                          //widget that retrieves the lits from the database and displays them
                           child: UserList()
                         );
                       });

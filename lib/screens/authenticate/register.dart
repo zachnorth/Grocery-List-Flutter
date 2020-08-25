@@ -3,6 +3,11 @@ import 'package:grocerylist/services/auth.dart';
 import 'package:grocerylist/shared/constants.dart';
 import 'package:grocerylist/shared/loading.dart';
 
+
+/*
+  Simple register page that requires user to register with email and password.
+  On submit, user auth script to register user with Firebase.
+*/
 class Register extends StatefulWidget {
 
   final Function toggleView;

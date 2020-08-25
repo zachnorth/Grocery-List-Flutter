@@ -20,10 +20,12 @@ class MyApp extends StatelessWidget {
 
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Grocery List'),
     );
   }
 }
+
+//Main page displayed when a user opens the app
 
 class MyHomePage extends StatefulWidget {
   
@@ -81,6 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  //redirects user through the wrapper to the home page if they are logged in or to the login page
   void _homeWrapper(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute<void>(

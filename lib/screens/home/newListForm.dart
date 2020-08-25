@@ -4,6 +4,10 @@ import 'package:grocerylist/services/database.dart';
 import 'package:grocerylist/shared/constants.dart';
 import 'package:provider/provider.dart';
 
+
+/*
+  Form to create a new list
+*/
 class NewListForm extends StatefulWidget {
   @override
   _NewListFormState createState() => _NewListFormState();
@@ -37,6 +41,7 @@ class _NewListFormState extends State<NewListForm> {
               child: Text('Submit', style: TextStyle(fontSize: 20.0, color: Colors.white)),
               onPressed: () async {
                 if(_formKey.currentState.validate()) {
+                  //call to DatabaseService.newList that creates new list in the database
                   await DatabaseService(uid: user.uid).newList(_listName);
                 }
                 Navigator.pop(context);

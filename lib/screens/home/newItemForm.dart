@@ -5,6 +5,9 @@ import 'package:grocerylist/services/database.dart';
 import 'package:grocerylist/shared/constants.dart';
 import 'package:provider/provider.dart';
 
+/*
+  Form to create new item in currently selected list
+*/
 class NewItemForm extends StatefulWidget {
 
   final String listName;
@@ -59,6 +62,7 @@ class _NewItemFormState extends State<NewItemForm> {
               onPressed: () async {
                 if(_formKey.currentState.validate()) {
                   print(listName);
+                  //call to DatabaseService.addNewItem that adds new item to currently selected list
                   await DatabaseService(uid: user.uid).addNewItem(user.uid, _itemName, listName, _quantity);
                 }
                 Navigator.pop(context);
